@@ -16,7 +16,8 @@ RUN wget -q https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdk
 
 FROM download-${TARGETARCH} AS download
 
-FROM debian:11.6
+
+FROM debian:11.6-slim
 ARG RENPY_VERSION
 
 ENV RENPY_VERSION=${RENPY_VERSION}
