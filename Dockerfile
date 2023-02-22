@@ -1,12 +1,20 @@
 # syntax=docker/dockerfile:1
 
-FROM alpine:3 AS download
+FROM alpine:3 AS download-base
 ARG RENPY_VERSION
 
+# Download different sdk files depending on architecture
+FROM download-base AS download-amd64
 RUN wget -q https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdk.tar.bz2 \
     && tar -xjf renpy-${RENPY_VERSION}-sdk.tar.bz2 \
     && mv renpy-${RENPY_VERSION}-sdk renpy-sdk
 
+FROM download-base AS download-arm64
+RUN wget -q https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdkarm.tar.bz2 \
+    && tar -xjf renpy-${RENPY_VERSION}-sdkarm.tar.bz2 \
+    && mv renpy-${RENPY_VERSION}-sdkarm renpy-sdk
+
+FROM download-${TARGETARCH} AS download
 
 FROM debian:11.6
 ARG RENPY_VERSION
