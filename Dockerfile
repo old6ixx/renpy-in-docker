@@ -9,10 +9,12 @@ RUN wget -q https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdk
     && tar -xjf renpy-${RENPY_VERSION}-sdk.tar.bz2 --no-same-owner \
     && mv renpy-${RENPY_VERSION}-sdk renpy-sdk
 
-FROM download-base AS download-arm64
+FROM download-base AS download-arm
 RUN wget -q https://www.renpy.org/dl/${RENPY_VERSION}/renpy-${RENPY_VERSION}-sdkarm.tar.bz2 \
     && tar -xjf renpy-${RENPY_VERSION}-sdkarm.tar.bz2 --no-same-owner \
     && mv renpy-${RENPY_VERSION}-sdkarm renpy-sdk
+
+FROM download-arm AS download-arm64
 
 FROM download-${TARGETARCH} AS download
 

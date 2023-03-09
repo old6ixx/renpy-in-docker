@@ -6,7 +6,7 @@
 
 - Build distributions for [Ren'Py](https://www.renpy.org/) projects
 - Launch projects through [X11](https://www.x.org/wiki/guide/concepts/)
-- Support multi architectures: `amd64`, `arm64`
+- Support multi architectures: `amd64`, `arm64`, `arm`
 - Run as non-root user by setting `PUID` and `PGID`, like [linuxserver.io does](https://docs.linuxserver.io/general/understanding-puid-and-pgid/)
 
 ## Usage
